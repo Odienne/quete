@@ -2,6 +2,9 @@
 
 class Mort extends Etat
 {
+
+    public $nom = 'mort';
+
     public function handle1(): void
     {
         echo "Mort handles request1.\n";

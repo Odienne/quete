@@ -2,6 +2,8 @@
 
 class Empoisonne extends Etat
 {
+    public $nom = 'empoisonne';
+
     public function handle1(): void
     {
         echo "Empoisonne handles request1.\n";

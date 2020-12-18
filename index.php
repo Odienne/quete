@@ -7,13 +7,13 @@ include 'Quete.php';
 
 //Créer les variables de session si elles n'existent pas
 session_start();
-if(!isset($_SESSION['personnages'])){
+if (!isset($_SESSION['personnages'])) {
     $_SESSION['personnages'] = array();
 }
-if(!isset($_SESSION['quetes'])){
+if (!isset($_SESSION['quetes'])) {
     $_SESSION['quetes'] = array();
 }
-if(!isset($_SESSION['quetes_disponibles'])){
+if (!isset($_SESSION['quetes_disponibles'])) {
     $_SESSION['quetes_disponibles'] = [
         ["nom" => "Sauver Billy", "description" => "C'est très simple", "recompense" => "100"],
         ["nom" => "Tuer le dragon de feu", "description" => "C'est très dur", "recompense" => "10000"],
@@ -30,44 +30,45 @@ echo "<br><br>";
 
 <h1>Nom de l'équipe</h1>
 <?php
-if(!empty($_SESSION['equipe'])){
-    echo "<p class='gras'>".$_SESSION['equipe']->nom."</p>";
-    foreach($_SESSION['equipe']->joueurs as $key => $joueur){
-        echo "<p>-".$joueur->nom."</p>";
+if (!empty($_SESSION['equipe'])) {
+    echo "<p class='gras'>" . $_SESSION['equipe']->nom . "</p>";
+    foreach ($_SESSION['equipe']->joueurs as $key => $joueur) {
+        echo "<p>-" . $joueur->nom . "</p>";
     }
-}else{
+} else {
     echo "Vide";
 }
 ?>
 
 <h1>Liste des joueurs</h1>
 <?php
-if(!empty($_SESSION['personnages'])){
-    foreach($_SESSION['personnages'] as $key => $joueur){
+if (!empty($_SESSION['personnages'])) {
+    foreach ($_SESSION['personnages'] as $key => $joueur) {
         ?>
         <div class="joueur">
-        <p class="gras">Nom : <?php echo $joueur->nom ?></p>
-        <p>Niveau : <?php echo $joueur->niveau ?></p>
-        <p>XP : <?php echo $joueur->xp ?></p>
-        <p>PV : <?php echo $joueur->pv ?></p>
-        <p>Attaque : <?php echo $joueur->attaque ?></p>
+            <p class="gras">Nom : <?php echo $joueur->nom ?></p>
+            <p>Niveau : <?php echo $joueur->niveau ?></p>
+            <p>XP : <?php echo $joueur->xp ?></p>
+            <p>PV : <?php echo $joueur->pv ?></p>
+            <p>Attaque : <?php echo $joueur->attaque ?></p>
+            <p>Etat : <?php echo $joueur->etat->getNom() ?></p>
         </div>
         <?php
     }
-}else{
+} else {
     echo "Vide";
 }
 ?>
 
 <h1>Liste des quêtes</h1>
 <?php
-if(!empty($_SESSION['quetes'])){
-    foreach($_SESSION['quetes'] as $key => $quete){
+if (!empty($_SESSION['quetes'])) {
+    foreach ($_SESSION['quetes'] as $key => $quete) {
         ?>
         <p>-<?php echo $quete->nom ?></p>
         <?php
     }
-}else{
+} else {
     echo "Vide";
 }
 ?>
@@ -92,18 +93,18 @@ if(!empty($_SESSION['quetes'])){
     <input type="hidden" name="action" value="choisir_quete">
     <h1>Choisir une quête</h1>
     <?php
-    if(!empty($_SESSION['quetes_disponibles'])){
-    ?>
-    <select name="quete" required>
-        <?php
-        foreach($_SESSION['quetes_disponibles'] as $key => $quest){
-            echo "<option value='".$key."'>".$quest["nom"]."</option>";
-        }
+    if (!empty($_SESSION['quetes_disponibles'])) {
         ?>
-    </select>
-    <input type="submit" value="Choisir">
-    <?php
-    }else{
+        <select name="quete" required>
+            <?php
+            foreach ($_SESSION['quetes_disponibles'] as $key => $quest) {
+                echo "<option value='" . $key . "'>" . $quest["nom"] . "</option>";
+            }
+            ?>
+        </select>
+        <input type="submit" value="Choisir">
+        <?php
+    } else {
         echo "Vide";
     }
     ?>

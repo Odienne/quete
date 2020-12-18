@@ -2,6 +2,8 @@
 
 class Vivant extends Etat
 {
+    public $nom = 'vivant';
+
     public function handle1(): void
     {
         echo "Vivant handles request1.\n";
