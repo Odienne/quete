@@ -3,6 +3,7 @@ include 'Joueur.php';
 include 'Etat.php';
 include 'Vivant.php';
 include 'Equipe.php';
+include 'Quete.php';
 
 //Créer les variables de session si elles n'existent pas
 session_start();
@@ -27,6 +28,18 @@ echo "<br><br>";
 
 <link href="style.css" rel="stylesheet">
 
+<h1>Nom de l'équipe</h1>
+<?php
+if(!empty($_SESSION['equipe'])){
+    echo "<p class='gras'>".$_SESSION['equipe']->nom."</p>";
+    foreach($_SESSION['equipe']->joueurs as $key => $joueur){
+        echo "<p>-".$joueur->nom."</p>";
+    }
+}else{
+    echo "Vide";
+}
+?>
+
 <h1>Liste des joueurs</h1>
 <?php
 if(!empty($_SESSION['personnages'])){
@@ -39,6 +52,19 @@ if(!empty($_SESSION['personnages'])){
         <p>PV : <?php echo $joueur->pv ?></p>
         <p>Attaque : <?php echo $joueur->attaque ?></p>
         </div>
+        <?php
+    }
+}else{
+    echo "Vide";
+}
+?>
+
+<h1>Liste des quêtes</h1>
+<?php
+if(!empty($_SESSION['quetes'])){
+    foreach($_SESSION['quetes'] as $key => $quete){
+        ?>
+        <p>-<?php echo $quete->nom ?></p>
         <?php
     }
 }else{
