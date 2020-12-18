@@ -1,4 +1,7 @@
 <?php
+include 'Joueur.php';
+include 'Etat.php'
+
 //Créer les variables de session si elles n'existent pas
 session_start();
 if(!isset($_SESSION['personnages'])){
@@ -19,6 +22,26 @@ echo "<br><br>Session : ";
 print_r($_SESSION);
 echo "<br><br>";
 ?>
+
+<div>
+<h1>Liste des joueurs</h1>
+<?php
+if(!empty($_SESSION['personnages'])){
+    foreach($_SESSION['personnages'] as $key => $joueur){
+        ?>
+        <div>
+        <p>Nom : <?php echo $joueur->nom ?></p>
+        <p>Niveau : <?php echo $joueur->niveau ?></p>
+        <p>XP : <?php echo $joueur->xp ?></p>
+        <p>PV : <?php echo $joueur->pv ?></p>
+        <p>Attaque : <?php echo $joueur->attaque ?></p>
+        <p>Etat : <?php echo $joueur->etat ?></p>
+        </div>
+        <?php
+    }
+}
+?>
+</div>
 
 <form action="Controller.php" method="post">
     <input type="hidden" name="action" value="creer_personnage">
