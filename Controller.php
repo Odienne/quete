@@ -27,7 +27,9 @@ switch ($action) {
     }
     case 'choisir_quete':
     {
-        array_push($_SESSION['quetes'], new Quete($_POST['nom_quete'], $_POST['description_quete'], $_POST['recompense_quete']));
+        $quete = $_SESSION['quetes_disponibles'][$_POST['quete']];
+        array_push($_SESSION['quetes'], new Quete($quete['nom_quete'], $quete['description_quete'], $quete['recompense_quete']));
+        unset($_SESSION['quetes_disponibles'][$_POST['quete']]);
         break;
     }
     case 'terminer_quete':
