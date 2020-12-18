@@ -30,6 +30,13 @@ echo "<br><br>";
 </form>
 
 <form action="Controller.php" method="post">
+    <input type="hidden" name="action" value="creer_equipe">
+    <h1>Créer une équipe</h1>
+    <label>Nom : <input name="nom_equipe" type="text"></label>
+    <input type="submit" value="Créer">
+</form>
+
+<form action="Controller.php" method="post">
     <input type="hidden" name="action" value="choisir_quete">
     <h1>Choisir une quête</h1>
     <select name="quete">
