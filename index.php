@@ -1,12 +1,5 @@
 <?php
 
-//Tableau des quêtes
-$tab_quest = [
-    ["nom" => "Sauver Billy", "description" => "C'est très simple", "recompense" => "100"],
-    ["nom" => "Tuer le dragon de feu", "description" => "C'est très dur", "recompense" => "10000"],
-    ["nom" => "Cueillir des fleurs", "description" => "C'est moyennement dur", "recompense" => "1000"]
-];
-
 //Créer les variables de session si elles n'existent pas
 session_start();
 if(empty($_SESSION['personnages'])){
@@ -15,13 +8,17 @@ if(empty($_SESSION['personnages'])){
 if(empty($_SESSION['quetes'])){
     $_SESSION['quetes'] = array();
 }
+if(empty($_SESSION['quetes_disponibles'])){
+    $_SESSION['quetes_disponibles'] = [
+        ["nom" => "Sauver Billy", "description" => "C'est très simple", "recompense" => "100"],
+        ["nom" => "Tuer le dragon de feu", "description" => "C'est très dur", "recompense" => "10000"],
+        ["nom" => "Cueillir des fleurs", "description" => "C'est moyennement dur", "recompense" => "1000"]
+    ];
+}
 
 echo "<br><br>Session : ";
 print_r($_SESSION);
 echo "<br><br>";
-
-$myQuete = new Quete("Sauver Billy", "C'est très simple", "100");
-
 ?>
 
 <form action="Controller.php" method="post">
@@ -38,7 +35,7 @@ $myQuete = new Quete("Sauver Billy", "C'est très simple", "100");
     <h1>Choisir une quête</h1>
     <select name="quete">
         <?php
-        foreach($tab_quest as $key => $quest){
+        foreach($_SESSION['quetes_disponibles'] as $key => $quest){
             echo "<option value='".$key."'>".$quest["nom"]."</option>";
         }
         ?>
