@@ -1,14 +1,13 @@
 <?php
-
 //Créer les variables de session si elles n'existent pas
 session_start();
-if(empty($_SESSION['personnages'])){
+if(!isset($_SESSION['personnages'])){
     $_SESSION['personnages'] = array();
 }
-if(empty($_SESSION['quetes'])){
+if(!isset($_SESSION['quetes'])){
     $_SESSION['quetes'] = array();
 }
-if(empty($_SESSION['quetes_disponibles'])){
+if(!isset($_SESSION['quetes_disponibles'])){
     $_SESSION['quetes_disponibles'] = [
         ["nom" => "Sauver Billy", "description" => "C'est très simple", "recompense" => "100"],
         ["nom" => "Tuer le dragon de feu", "description" => "C'est très dur", "recompense" => "10000"],
