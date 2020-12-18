@@ -38,9 +38,7 @@ switch ($action) {
     }
     case 'recommencer_partie':
     {
-        $_SESSION['personnages'] = null;
-        $_SESSION['equipe'] = null;
-        $_SESSION['quetes'] = null;
+        session_destroy();
         break;
     }
     default:

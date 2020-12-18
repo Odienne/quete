@@ -1,14 +1,13 @@
 <?php
-
 //Créer les variables de session si elles n'existent pas
 session_start();
-if(empty($_SESSION['personnages'])){
+if(!isset($_SESSION['personnages'])){
     $_SESSION['personnages'] = array();
 }
-if(empty($_SESSION['quetes'])){
+if(!isset($_SESSION['quetes'])){
     $_SESSION['quetes'] = array();
 }
-if(empty($_SESSION['quetes_disponibles'])){
+if(!isset($_SESSION['quetes_disponibles'])){
     $_SESSION['quetes_disponibles'] = [
         ["nom" => "Sauver Billy", "description" => "C'est très simple", "recompense" => "100"],
         ["nom" => "Tuer le dragon de feu", "description" => "C'est très dur", "recompense" => "10000"],
@@ -27,6 +26,13 @@ echo "<br><br>";
     <label>Nom : <input name="nom" type="text"></label>
     <label>PV : <input name="pv" type="text"></label>
     <label>Attaque : <input name="attaque" type="text"></label>
+    <input type="submit" value="Créer">
+</form>
+
+<form action="Controller.php" method="post">
+    <input type="hidden" name="action" value="creer_equipe">
+    <h1>Créer une équipe</h1>
+    <label>Nom : <input name="nom_equipe" type="text"></label>
     <input type="submit" value="Créer">
 </form>
 
