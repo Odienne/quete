@@ -25,14 +25,15 @@ print_r($_SESSION);
 echo "<br><br>";
 ?>
 
-<div>
+<link href="style.css" rel="stylesheet">
+
 <h1>Liste des joueurs</h1>
 <?php
 if(!empty($_SESSION['personnages'])){
     foreach($_SESSION['personnages'] as $key => $joueur){
         ?>
-        <div>
-        <p>Nom : <?php echo $joueur->nom ?></p>
+        <div class="joueur">
+        <p class="gras">Nom : <?php echo $joueur->nom ?></p>
         <p>Niveau : <?php echo $joueur->niveau ?></p>
         <p>XP : <?php echo $joueur->xp ?></p>
         <p>PV : <?php echo $joueur->pv ?></p>
@@ -44,28 +45,30 @@ if(!empty($_SESSION['personnages'])){
     echo "Vide";
 }
 ?>
-</div>
 
 <form action="Controller.php" method="post">
     <input type="hidden" name="action" value="creer_personnage">
     <h1>Créer un personnage</h1>
-    <label>Nom : <input name="nom" type="text"></label>
-    <label>PV : <input name="pv" type="text"></label>
-    <label>Attaque : <input name="attaque" type="text"></label>
+    <label>Nom : <input required name="nom" type="text"></label>
+    <label>PV : <input required name="pv" type="text"></label>
+    <label>Attaque : <input required name="attaque" type="text"></label>
     <input type="submit" value="Créer">
 </form>
 
 <form action="Controller.php" method="post">
     <input type="hidden" name="action" value="creer_equipe">
     <h1>Créer une équipe</h1>
-    <label>Nom : <input name="nom_equipe" type="text"></label>
+    <label>Nom : <input required name="nom_equipe" type="text"></label>
     <input type="submit" value="Créer">
 </form>
 
 <form action="Controller.php" method="post">
     <input type="hidden" name="action" value="choisir_quete">
     <h1>Choisir une quête</h1>
-    <select name="quete">
+    <?php
+    if(!empty($_SESSION['quetes_disponibles'])){
+    ?>
+    <select name="quete" required>
         <?php
         foreach($_SESSION['quetes_disponibles'] as $key => $quest){
             echo "<option value='".$key."'>".$quest["nom"]."</option>";
@@ -73,6 +76,11 @@ if(!empty($_SESSION['personnages'])){
         ?>
     </select>
     <input type="submit" value="Choisir">
+    <?php
+    }else{
+        echo "Vide";
+    }
+    ?>
 </form>
 
 <form action="Controller.php" method="post">
