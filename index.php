@@ -81,11 +81,15 @@ if (!empty($_SESSION['personnages'])) {
 if (!empty($_SESSION['quetes'])) {
     foreach ($_SESSION['quetes'] as $key => $quete) {
         ?>
-        <p>-<?php echo $quete->nom ?></p>
+        <p>-<?php echo $quete->nom ?> (status:<?php echo $quete->status ?>)</p>
         <form action="Controller.php" method="post">
             <input type="hidden" name="action" value="finir_quete">
             <input type="hidden" name="reference" value="<?php echo $key ?>">
-            <input type="submit" value="Finir la quête">
+
+            <?php if ($quete->status !== 'terminé') { ?>
+                <input type="submit" value="Finir la quête">
+            <?php } ?>
+
         </form>
         <?php
     }

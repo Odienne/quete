@@ -41,7 +41,7 @@ switch ($action) {
         $quete = $_SESSION['quetes'][$_POST['reference']];
         $quete->setStatus("terminé");
         $quete->notify();
-        unset($_SESSION['quetes'][$_POST['reference']]);
+//        unset($_SESSION['quetes'][$_POST['reference']]);
         break;
     }
     case 'change_etat':
