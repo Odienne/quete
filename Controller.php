@@ -34,8 +34,11 @@ switch ($action) {
     {
         break;
     }
-    case 'endQuest':
+    case 'recommencer_partie':
     {
+        $_SESSION['personnages'] = null;
+        $_SESSION['equipe'] = null;
+        $_SESSION['quetes'] = null;
         break;
     }
     default:

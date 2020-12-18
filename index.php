@@ -43,7 +43,7 @@ echo "<br><br>";
 </form>
 
 <form action="Controller.php" method="post">
-    <input type="hidden" name="action" value="new_game">
+    <input type="hidden" name="action" value="recommencer_partie">
     <h1>Nouvelle partie</h1>
     <input type="submit" value="Recommencer une partie">
 </form>
