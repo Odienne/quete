@@ -23,6 +23,9 @@ class Equipe implements SplObserver
     public function update(SplSubject $subject)
     {
         echo __CLASS__ . ' - ' . $subject->getStatus();
+        if ($subject->getStatus() === 'terminé') {
+            $this->shareXp($subject->getRecompense());
+        }
     }
 
     /**
@@ -69,12 +72,15 @@ class Equipe implements SplObserver
             }
         }
     }
+
     public function shareXp($value)
     {
         for ($this->iteratorPlayers->rewind(); $this->iteratorPlayers->valid(); $this->iteratorPlayers->next()) {
             try {
                 $player = $this->iteratorPlayers->current();
-                $player->setXp($player->getXp() + $value);
+                if ($player->etat->getNom() !== 'mort') {
+                    $player->setXp($player->getXp() + $value);
+                }
             } catch (Exception $exception) {
                 continue;
             }

@@ -28,12 +28,24 @@ switch ($action) {
     case 'choisir_quete':
     {
         $quete = $_SESSION['quetes_disponibles'][$_POST['quete']];
-        array_push($_SESSION['quetes'], new Quete($quete['nom'], $quete['description'], $quete['recompense']));
+        $quete->attach($_SESSION["equipe"]);
+//        var_dump($quete);
+//        return;
+        $quete->setStatus("accepté");
+        $quete->notify();
+
+        array_push($_SESSION['quetes'], new Quete($quete->getNom(), $quete->getDescription(), $quete->getRecompense()));
         unset($_SESSION['quetes_disponibles'][$_POST['quete']]);
         break;
     }
-    case 'terminer_quete':
+    case 'finir_quete':
     {
+        $quete = $_SESSION['quetes'][$_POST['reference']];
+        $quete->setStatus("terminé");
+        $quete->notify();
+//        var_dump($quete);
+//        return;
+        unset($_SESSION['quetes'][$_POST['reference']]);
         break;
     }
     case 'change_etat':
@@ -57,7 +69,6 @@ switch ($action) {
                 break;
             }
         }
-        var_dump($etat);
         $player->transitionTo($etat);
         $_SESSION['personnages'][$_POST['reference']] = $player;
         break;

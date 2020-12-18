@@ -18,9 +18,11 @@ if (!isset($_SESSION['quetes'])) {
 }
 if (!isset($_SESSION['quetes_disponibles'])) {
     $_SESSION['quetes_disponibles'] = [
-        ["nom" => "Sauver Billy", "description" => "C'est très simple", "recompense" => "100"],
-        ["nom" => "Tuer le dragon de feu", "description" => "C'est très dur", "recompense" => "10000"],
-        ["nom" => "Cueillir des fleurs", "description" => "C'est moyennement dur", "recompense" => "1000"]
+        new Quete("Sauver Billy", "C'est très simple", 100),
+        new Quete("Tuer le dragon de feu", "C'est difficile", 100),
+        new Quete("Cueillir des fleurs", "C'est pas simple", 100),
+        new Quete("Sauver Thomas", "C'est facile", 100),
+        new Quete("Sauver Théo", "C'est risqué", 100),
     ];
 }
 
@@ -80,7 +82,7 @@ if (!empty($_SESSION['quetes'])) {
         ?>
         <p>-<?php echo $quete->nom ?></p>
         <form action="Controller.php" method="post">
-            <input type="hidden" name="action" value="fini_quete">
+            <input type="hidden" name="action" value="finir_quete">
             <input type="hidden" name="reference" value="<?php echo $key ?>">
             <input type="submit" value="Finir la quête">
         </form>
@@ -116,7 +118,7 @@ if (!empty($_SESSION['quetes'])) {
         <select name="quete" required>
             <?php
             foreach ($_SESSION['quetes_disponibles'] as $key => $quest) {
-                echo "<option value='" . $key . "'>" . $quest["nom"] . "</option>";
+                echo "<option value='" . $key . "'>" . $quest->getNom() . "</option>";
             }
             ?>
         </select>
