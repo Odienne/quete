@@ -9,6 +9,7 @@ include 'Quete.php';
 
 //Créer les variables de session si elles n'existent pas
 session_start();
+//session_destroy();
 
 if (!isset($_SESSION['personnages'])) {
     $_SESSION['personnages'] = array();

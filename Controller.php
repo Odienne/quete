@@ -29,12 +29,10 @@ switch ($action) {
     {
         $quete = $_SESSION['quetes_disponibles'][$_POST['quete']];
         $quete->attach($_SESSION["equipe"]);
-//        var_dump($quete);
-//        return;
         $quete->setStatus("accepté");
         $quete->notify();
 
-        array_push($_SESSION['quetes'], new Quete($quete->getNom(), $quete->getDescription(), $quete->getRecompense()));
+        array_push($_SESSION['quetes'], $quete);
         unset($_SESSION['quetes_disponibles'][$_POST['quete']]);
         break;
     }
@@ -43,8 +41,6 @@ switch ($action) {
         $quete = $_SESSION['quetes'][$_POST['reference']];
         $quete->setStatus("terminé");
         $quete->notify();
-//        var_dump($quete);
-//        return;
         unset($_SESSION['quetes'][$_POST['reference']]);
         break;
     }

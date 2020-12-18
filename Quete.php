@@ -103,4 +103,21 @@ class Quete implements SplSubject
     {
         $this->status = $status;
     }
+
+    /**
+     * @return SplObjectStorage
+     */
+    public function getObservers()
+    {
+        return $this->_observers;
+    }
+
+    /**
+     * @param SplObjectStorage $observers
+     */
+    public function setObservers($observers)
+    {
+        $this->_observers = $observers;
+    }
+
 }

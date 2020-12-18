@@ -25,6 +25,7 @@ class Equipe implements SplObserver
         echo __CLASS__ . ' - ' . $subject->getStatus();
         if ($subject->getStatus() === 'terminé') {
             $this->shareXp($subject->getRecompense());
+            $this->updatePlayersSession();
         }
     }
 
@@ -82,6 +83,20 @@ class Equipe implements SplObserver
                     $player->setXp($player->getXp() + $value);
                 }
             } catch (Exception $exception) {
+                continue;
+            }
+        }
+    }
+
+    public function updatePlayersSession()
+    {
+        $_SESSION['personnages'] = [];
+
+        for ($this->iteratorPlayers->rewind(); $this->iteratorPlayers->valid(); $this->iteratorPlayers->next()) {
+            try {
+                array_push($_SESSION['personnages'], $this->iteratorPlayers->current());
+            } catch
+            (Exception $exception) {
                 continue;
             }
         }
