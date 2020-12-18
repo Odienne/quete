@@ -52,6 +52,16 @@ if (!empty($_SESSION['personnages'])) {
             <p>PV : <?php echo $joueur->pv ?></p>
             <p>Attaque : <?php echo $joueur->attaque ?></p>
             <p>Etat : <?php echo $joueur->etat->getNom() ?></p>
+            <form action="Controller.php" method="post">
+            <input type="hidden" name="action" value="change_etat">
+            <input type="hidden" name="reference" value="<?php echo $key ?>">
+            <select name="etat">
+                <option value="1">Vivant</option>
+                <option value="2">Mort</option>
+                <option value="3">Empoisonné</option>
+            </select>
+            <input type="submit" value="Changer d'état">
+            </form>
         </div>
         <?php
     }
