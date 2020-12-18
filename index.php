@@ -1,6 +1,8 @@
 <?php
 include 'Joueur.php';
-include 'Etat.php'
+include 'Etat.php';
+include 'Vivant.php';
+include 'Equipe.php';
 
 //Créer les variables de session si elles n'existent pas
 session_start();
@@ -35,10 +37,11 @@ if(!empty($_SESSION['personnages'])){
         <p>XP : <?php echo $joueur->xp ?></p>
         <p>PV : <?php echo $joueur->pv ?></p>
         <p>Attaque : <?php echo $joueur->attaque ?></p>
-        <p>Etat : <?php echo $joueur->etat ?></p>
         </div>
         <?php
     }
+}else{
+    echo "Vide";
 }
 ?>
 </div>

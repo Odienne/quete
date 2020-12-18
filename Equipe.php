@@ -1,5 +1,6 @@
 <?php
 
+include 'MyIterator.php';
 
 class Equipe implements SplObserver
 {
