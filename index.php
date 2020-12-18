@@ -2,11 +2,14 @@
 include 'Joueur.php';
 include 'Etat.php';
 include 'Vivant.php';
+include 'Mort.php';
+include 'Empoisonne.php';
 include 'Equipe.php';
 include 'Quete.php';
 
 //Créer les variables de session si elles n'existent pas
 session_start();
+
 if (!isset($_SESSION['personnages'])) {
     $_SESSION['personnages'] = array();
 }

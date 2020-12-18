@@ -36,6 +36,32 @@ switch ($action) {
     {
         break;
     }
+    case 'change_etat':
+    {
+        $player = $_SESSION['personnages'][$_POST['reference']];
+        $etat = $_POST['etat'];
+        switch ($etat) {
+            case "1":
+            {
+                $etat = new Vivant();
+                break;
+            }
+            case "2":
+            {
+                $etat = new Mort();
+                break;
+            }
+            case "3":
+            {
+                $etat = new Empoisonne();
+                break;
+            }
+        }
+        var_dump($etat);
+        $player->transitionTo($etat);
+        $_SESSION['personnages'][$_POST['reference']] = $player;
+        break;
+    }
     case 'recommencer_partie':
     {
         session_destroy();
